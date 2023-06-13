@@ -1,304 +1,0 @@
-Cryptography and
-Network Security
-   Chapter 20
-         Fifth Edition
-     by William Stallings
-
-Lecture slides by Lawrie Brown
-      Chapter 20– Intruders
-
-They agreed that Graham should set the test for
-  Charles Mabledene. It was neither more nor less
-  than that Dragon should get Stern's code. If he
-  had the 'in' at Utting which he claimed to have
-  this should be possible, only loyalty to Moscow
-  Centre would prevent it. If he got the key to the
-  code he would prove his loyalty to London
-  Central beyond a doubt.
-  —Talking to Strange Men, Ruth Rendell
-                  Intruders
-Ø significant issue for networked systems is
-  hostile or unwanted access
-Ø either via network or local
-Ø can identify classes of intruders:
-  l   masquerader
-  l   misfeasor
-  l   clandestine user
-Ø varying   levels of competence
-                   Intruders
-Ø clearly   a growing publicized problem
-  l   from “Wily Hacker” in 1986/87
-  l   to clearly escalating CERT stats
-Ø range
-  l   benign: explore, still costs resources
-  l   serious: access/modify data, disrupt system
-Ø led to the development of CERTs
-Ø intruder techniques & behavior patterns
-  constantly shifting, have common features
-        Examples of Intrusion
-Ø   remote root compromise
-Ø   web server defacement
-Ø   guessing / cracking passwords
-Ø   copying viewing sensitive data / databases
-Ø   running a packet sniffer
-Ø   distributing pirated software
-Ø   using an unsecured modem to access net
-Ø   impersonating a user to reset password
-Ø   using an unattended workstation
-                         Hackers
-Ø   motivated by thrill of access and status
-    l   hacking community a strong meritocracy
-    l   status is determined by level of competence
-Ø   benign intruders might be tolerable
-    l   do consume resources and may slow performance
-    l   can’t know in advance whether benign or malign
-Ø   IDS / IPS / VPNs can help counter
-Ø   awareness led to establishment of CERTs
-    l   collect / disseminate vulnerability info / responses
-     Hacker Behavior Example
-1.   select target using IP lookup tools
-2.   map network for accessible services
-3.   identify potentially vulnerable services
-4.   brute force (guess) passwords
-5.   install remote administration tool
-6.   wait for admin to log on and capture
-     password
-7.   use password to access remainder of
-     network
-             Criminal Enterprise
-Ø organized    groups of hackers now a threat
-  l   corporation / government / loosely affiliated gangs
-  l   typically young
-  l   often Eastern European or Russian hackers
-  l   often target credit cards on e-commerce server
-Ø criminal hackers usually have specific targets
-Ø once penetrated act quickly and get out
-Ø IDS / IPS help but less effective
-Ø sensitive data needs strong protection
- Criminal Enterprise Behavior
-1.   act quickly and precisely to make their
-     activities harder to detect
-2.   exploit perimeter via vulnerable ports
-3.   use trojan horses (hidden software) to
-     leave back doors for re-entry
-4.   use sniffers to capture passwords
-5.   do not stick around until noticed
-6.   make few or no mistakes.
-                 Insider Attacks
-Ø   among most difficult to detect and prevent
-Ø   employees have access & systems knowledge
-Ø   may be motivated by revenge / entitlement
-    l   when employment terminated
-    l   taking customer data when move to competitor
-Ø   IDS / IPS may help but also need:
-    l   least privilege, monitor logs, strong authentication,
-        termination process to block access & mirror data
-     Insider Behavior Example
-1.   create network accounts for themselves and
-     their friends
-2.   access accounts and applications they wouldn't
-     normally use for their daily jobs
-3.   e-mail former and prospective employers
-4.   conduct furtive instant-messaging chats
-5.   visit web sites that cater to disgruntled
-     employees, such as f'dcompany.com
-6.   perform large downloads and file copying
-7.   access the network during off hours.
-        Intrusion Techniques
-Ø aim  to gain access and/or increase
-  privileges on a system
-Ø often use system / software vulnerabilities
-Ø key goal often is to acquire passwords
-  l   so then exercise access rights of owner
-Ø basic   attack methodology
-  l   target acquisition and information gathering
-  l   initial access
-  l   privilege escalation
-  l   covering tracks
-             Password Guessing
-Ø   one of the most common attacks
-Ø   attacker knows a login (from email/web page etc)
-Ø   then attempts to guess password for it
-    l   defaults, short passwords, common word searches
-    l   user info (variations on names, birthday, phone,
-        common words/interests)
-    l   exhaustively searching all possible passwords
-Ø   check by login or against stolen password file
-Ø   success depends on password chosen by user
-Ø   surveys show many users choose poorly
-              Password Capture
-Ø   another attack involves password capture
-    l   watching over shoulder as password is entered
-    l   using a trojan horse program to collect
-    l   monitoring an insecure network login
-         • eg. telnet, FTP, web, email
-    l   extracting recorded info after successful login (web
-        history/cache, last number dialed etc)
-Ø   using valid login/password can impersonate user
-Ø   users need to be educated to use suitable
-    precautions/countermeasures
-          Intrusion Detection
-Ø inevitably
-           will have security failures
-Ø so need also to detect intrusions so can
-  l   block if detected quickly
-  l   act as deterrent
-  l   collect info to improve security
-Ø assume   intruder will behave differently to a
-  legitimate user
-  l   but will have imperfect distinction between
-Intrusion Detection
-        Approaches to Intrusion
-              Detection
-Ø statistical   anomaly detection
-  l   attempts to define normal/expected behavior
-  l   threshold
-  l   profile based
-Ø rule-based     detection
-  l   attempts to define proper behavior
-  l   anomaly
-  l   penetration identification
-               Audit Records
-Ø fundamental   tool for intrusion detection
-Ø native audit records
-  l   part of all common multi-user O/S
-  l   already present for use
-  l   may not have info wanted in desired form
-Ø detection-specific     audit records
-  l   created specifically to collect wanted info
-  l   at cost of additional overhead on system
-Statistical Anomaly Detection
-Ø threshold    detection
-  l   count occurrences of specific event over time
-  l   if exceed reasonable value assume intrusion
-  l   alone is a crude & ineffective detector
-Ø profile   based
-  l   characterize past behavior of users
-  l   detect significant deviations from this
-  l   profile usually multi-parameter
-        Audit Record Analysis
-Ø foundation of statistical approaches
-Ø analyze records to get metrics over time
-  l   counter, gauge, interval timer, resource use
-Ø usevarious tests on these to determine if
- current behavior is acceptable
-  l   mean & standard deviation, multivariate,
-      markov process, time series, operational
-Ø key   advantage is no prior knowledge used
-        Rule-Based Intrusion
-             Detection
-Ø observe  events on system & apply rules to
-  decide if activity is suspicious or not
-Ø rule-based anomaly detection
-  l   analyze historical audit records to identify
-      usage patterns & auto-generate rules for them
-  l   then observe current behavior & match
-      against rules to see if conforms
-  l   like statistical anomaly detection does not
-      require prior knowledge of security flaws
-        Rule-Based Intrusion
-             Detection
-Ø rule-based    penetration identification
-  l   uses expert systems technology
-  l   with rules identifying known penetration,
-      weakness patterns, or suspicious behavior
-  l   compare audit records or states against rules
-  l   rules usually machine & O/S specific
-  l   rules are generated by experts who interview
-      & codify knowledge of security admins
-  l   quality depends on how well this is done
-           Base-Rate Fallacy
-Ø practically an intrusion detection system
-  needs to detect a substantial percentage
-  of intrusions with few false alarms
-  l   if too few intrusions detected -> false security
-  l   if too many false alarms -> ignore / waste time
-Ø thisis very hard to do
-Ø existing systems seem not to have a good
-  record
-         Distributed Intrusion
-               Detection
-Ø traditionalfocus is on single systems
-Ø but typically have networked systems
-Ø more effective defense has these working
-  together to detect intrusions
-Ø issues
-  l   dealing with varying audit record formats
-  l   integrity & confidentiality of networked data
-  l   centralized or decentralized architecture
-Distributed Intrusion Detection -
-          Architecture
-Distributed Intrusion Detection –
-      Agent Implementation
-                 Honeypots
-Ø decoy   systems to lure attackers
-  l   away from accessing critical systems
-  l   to collect information of their activities
-  l   to encourage attacker to stay on system so
-      administrator can respond
-Ø are  filled with fabricated information
-Ø instrumented to collect detailed
-  information on attackers activities
-Ø single or multiple networked systems
-Ø cf IETF Intrusion Detection WG standards
-       Password Management
-Ø front-line
-           defense against intruders
-Ø users supply both:
-  l   login – determines privileges of that user
-  l   password – to identify them
-Ø passwords     often stored encrypted
-  l   Unix uses multiple DES (variant with salt)
-  l   more recent systems use crypto hash function
-Ø should   protect password file on system
-        Password Studies
-Ø Purdue  1992 - many short passwords
-Ø Klein 1990 - many guessable passwords
-Ø conclusion is that users choose poor
-  passwords too often
-Ø need some approach to counter this
-        Managing Passwords -
-             Education
-Ø can use policies and good user education
-Ø educate on importance of good passwords
-Ø give guidelines for good passwords
-  l   minimum length (>6)
-  l   require a mix of upper & lower case letters,
-      numbers, punctuation
-  l   not dictionary words
-Ø but   likely to be ignored by many users
-        Managing Passwords -
-         Computer Generated
-Ø let computer create passwords
-Ø if random likely not memorisable, so will
-  be written down (sticky label syndrome)
-Ø even pronounceable not remembered
-Ø have history of poor user acceptance
-Ø FIPS PUB 181 one of best generators
-  l   has both description & sample code
-  l   generates words from concatenating random
-      pronounceable syllables
-       Managing Passwords -
-        Reactive Checking
-Ø reactively   run password guessing tools
-  l   note that good dictionaries exist for almost
-      any language/interest group
-Ø cracked  passwords are disabled
-Ø but is resource intensive
-Ø bad passwords are vulnerable till found
-       Managing Passwords -
-        Proactive Checking
-Ø most  promising approach to improving
-  password security
-Ø allow users to select own password
-Ø but have system verify it is acceptable
-  l   simple rule enforcement (see earlier slide)
-  l   compare against dictionary of bad passwords
-  l   use algorithmic (markov model or bloom filter)
-      to detect poor choices
-                  Summary
-Ø have   considered:
-  l   problem of intrusion, behavior and techniques
-  l   intrusion detection (statistical & rule-based)
-  l   password management
-
